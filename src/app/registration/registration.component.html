@@ -1,0 +1,113 @@
+<form [formGroup]="registerForm" (ngSubmit)=" checkUser()">
+    <h2>Registration Form</h2>
+    <label>First Name:</label>
+    <input type="text" formControlName="firstname" placeholder="Enter your first name">
+
+    <div class="form-text text-danger" *ngIf="firstname.errors?.['required'] && (firstname.dirty || firstname.touched)">
+        *First name is Required!
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="firstname.errors?.['minlength'] && (firstname.dirty || firstname.touched)">
+        *The Minimum length is 2!
+    </div>
+    <div class="form-text text-danger" *ngIf="firstname.errors?.['pattern'] && (firstname.dirty || firstname.touched)">
+        *Name can only be Letters!
+    </div>
+
+    <label>Last Name:</label>
+    <input type="text" formControlName="lastname" placeholder="Enter your first name">
+
+    <div class="form-text text-danger" *ngIf="lastname.errors?.['required'] && (lastname.dirty || lastname.touched)">
+        *Last name is Required!
+    </div>
+    <div class="form-text text-danger" *ngIf="lastname.errors?.['minlength'] && (lastname.dirty || lastname.touched)">
+        *The Minimum length is 2!
+    </div>
+    <div class="form-text text-danger" *ngIf="lastname.errors?.['pattern'] && (lastname.dirty || lastname.touched)">
+        *Name can only be Letters!
+    </div>
+
+    <!-- <label>User Name:</label>
+    <input type="text" formControlName="username" placeholder="Enter your first name">
+
+    <div class="form-text text-danger" *ngIf="username.errors?.['required'] && (username.dirty || username.touched)">
+        *User name is Required!
+    </div>
+    <div class="form-text text-danger" *ngIf="username.errors?.['minlength'] && (username.dirty || username.touched)">
+        *The Minimum length is 2!
+    </div>
+    <div class="form-text text-danger" *ngIf="username.errors?.['pattern'] && (username.dirty || username.touched)">
+        *Name can only be Letters!
+    </div> -->
+
+    <!-- <label>Email:</label>
+    <input type="email" id="email" formControlName="email" placeholder="Enter your email">
+
+    <div class="form-text text-danger" *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">
+        Email is Required
+    </div>
+    <div class="form-text text-danger" *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">
+        Invalid Email
+    </div> -->
+
+    <label>Phone Number:</label>
+    <input type="text" formControlName="phoneNumber" placeholder="Enter your email">
+
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['required'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *Mobile is Required
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['minlength'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *The Minimum length is 10
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['maxlength'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *The maximum length is 13
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['pattern'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *Invalid Mobile
+    </div>
+
+    <label>Gender:</label>
+    <input type="radio" formControlName="gender" placeholder="Enter your first name" value="Male">Male
+    <input type="radio" formControlName="gender" placeholder="Enter your first name" value="Female">Female
+    <div class="form-text text-danger" *ngIf="gender.errors?.['required']">
+        *Select gender
+    </div>
+
+    <label>Password:</label>
+    <input type="password" id="password" formControlName="password" placeholder="Enter your password">
+
+    <div class="form-text text-danger" *ngIf="password.errors?.['required'] && (password.dirty || password.touched)">
+        *Password is Required
+    </div>
+    <div class="form-text text-danger" *ngIf="password.errors?.['minlength'] && (password.dirty || password.touched)">
+        *The Minimum length is 6
+    </div>
+    <div class="form-text text-danger" *ngIf="password.errors?.['maxlength'] && (password.dirty || password.touched)">
+        *The maximum length is 15
+    </div>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirm_password" formControlName="ConfirmPassword" placeholder="Confirm your password">
+
+    <div class="form-text text-danger"
+        *ngIf="ConfirmPassword.errors?.['required'] && (ConfirmPassword.dirty || ConfirmPassword.touched)">
+        *Password is Required
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="ConfirmPassword.errors?.['minlength'] && (ConfirmPassword.dirty || ConfirmPassword.touched)">
+        *The Minimum length is 6
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="ConfirmPassword.errors?.['maxlength'] && (ConfirmPassword.dirty || ConfirmPassword.touched)">
+        *The maximum length is 15
+    </div>
+    <div class="form-text text-danger" *ngIf="!passWordValidators()">
+        *It must mutch password field!
+    </div>
+
+    <input type="submit" value="Register">
+</form>

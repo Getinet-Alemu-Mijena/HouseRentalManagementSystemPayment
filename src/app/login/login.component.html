@@ -1,0 +1,40 @@
+
+    <div class="container">
+      <h1>Login</h1>
+      <form [formGroup]="loginForm">
+        <label for="email">Phone Number:</label>
+        <input type="email" id="Phone" formControlName = "phoneNumber" placeholder="Enter your user name!">
+
+        <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['required'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *Mobile is Required
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['minlength'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *The Minimum length is 10
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['maxlength'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *The maximum length is 13
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['pattern'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *Invalid Mobile
+    </div>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName = "password" placeholder="Enter your password!">
+        <div class="form-text text-danger" *ngIf="password.errors?.['required'] && (password.dirty || password.touched)">
+          *Password is Required
+      </div>
+      <div class="form-text text-danger" *ngIf="password.errors?.['minlength'] && (password.dirty || password.touched)">
+          *The Minimum length is 6
+      </div>
+      <div class="form-text text-danger" *ngIf="password.errors?.['maxlength'] && (password.dirty || password.touched)">
+          *The maximum length is 15
+      </div>
+        <input type="submit" value="Login">
+      </form>
+      Creare new account<a [routerLink]="['/registration']"> Registration</a>
+    </div>
+
