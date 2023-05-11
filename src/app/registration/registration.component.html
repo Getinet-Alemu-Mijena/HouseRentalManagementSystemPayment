@@ -70,6 +70,22 @@
         *Invalid Mobile
     </div>
 
+
+
+
+    <label>Balance:</label>
+    <input type="text" formControlName="balance" placeholder="Enter your email">
+
+    <div class="form-text text-danger"
+        *ngIf="balance.errors?.['required'] && (balance.dirty || balance.touched)">
+        *Balance is Required!
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="balance.errors?.['minlength'] && (balance.dirty || balance.touched)">
+        *The Minimum length is 3
+    </div>
+
+
     <label>Gender:</label>
     <input type="radio" formControlName="gender" placeholder="Enter your first name" value="Male">Male
     <input type="radio" formControlName="gender" placeholder="Enter your first name" value="Female">Female

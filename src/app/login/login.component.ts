@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-constructor(private http: HttpClient){}
+constructor(private http: HttpClient,
+  private fb: FormBuilder,
+  private router: Router,
+ ){}
+
+IncorrectUserOrPassword!: string;
+UserRole!:string;
   loginForm = new FormGroup({
     phoneNumber: new FormControl('', [
       Validators.required,
@@ -27,4 +34,62 @@ constructor(private http: HttpClient){}
   get password(): FormControl {
     return this.loginForm.get('password') as FormControl;
   }
+
+  LoginSubmitted(){
+
+    this.http
+        .get(`http://localhost:3050/loginCheck/${this.phoneNumber.value}/${this.password.value}`)
+        .subscribe(
+          (response) => {
+            if ((response as any).message == 'User exists') {
+              // this.UserTracker.login(this.UserName.value);
+              // this.CheckRole(this.phoneNumber.value);
+              // this.router.navigate(['/Tenant']);
+            //  alert('User is a valid user ');
+            this.router.navigate(['/home']);
+            } else {
+              this.IncorrectUserOrPassword="Incorrect phone number Or Password";
+
+
+            }
+          },
+          (error) => {
+            //this.dataAdded = false;
+            console.error('Error: ', error);
+          }
+        );
+  }
+
+  // CheckRole(userName:string){
+  //   this.http
+  //   .get(`http://localhost:3050/RollCheck/${userName}`)
+  //   .subscribe(
+  //     (response) => {
+  //       if ((response as any).message == 'User exists') {
+  //         this.UserRole=(response as any).roll;
+  //         this.UserTracker.login(this.UserName.value,this.UserRole);
+
+  //         //this.router.navigate(['/Tenant']);
+  //         //alert(this.UserRole);
+  //         if(this.UserRole=="House Owner"){
+  //           this.router.navigate(['/HouseOwner']);
+  //         }
+  //         else if(this.UserRole=="Tenant"){
+  //           this.router.navigate(['/Tenant']);
+  //         }
+
+
+
+  //       } else {
+  //         this.IncorrectUserOrPassword="Incorrect User Name Or Password";
+
+
+  //       }
+  //     },
+  //     (error) => {
+  //       //this.dataAdded = false;
+  //       console.error('Error: ', error);
+  //     }
+  //   );
+  // }
 }

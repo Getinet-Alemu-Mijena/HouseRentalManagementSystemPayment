@@ -41,6 +41,10 @@ export class RegistrationComponent {
     gender: new FormControl('', [
       Validators.required
     ]),
+    balance: new FormControl('',[
+      Validators.required,
+      Validators.minLength(3),
+    ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
@@ -77,6 +81,9 @@ export class RegistrationComponent {
   get ConfirmPassword(): FormControl {
     return this.registerForm.get('ConfirmPassword') as FormControl;
   }
+  get balance(): FormControl {
+    return this.registerForm.get('balance') as FormControl;
+  }
 
   passWordValidators(): boolean {
     if (this.password.value === this.ConfirmPassword.value) {
@@ -93,7 +100,8 @@ export class RegistrationComponent {
       lname: this.lastname.value,
       phoneN: this.phoneNumber.value,
       Gender: this.gender.value,
-      passw: this.password.value
+      passw: this.password.value,
+      bal_ance:this.balance.value
     };
     this.http.post('http://localhost:3050/addUser', data).subscribe(
       (response) => {
