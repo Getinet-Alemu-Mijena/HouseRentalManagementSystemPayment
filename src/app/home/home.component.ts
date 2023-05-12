@@ -14,15 +14,14 @@ export class HomeComponent {
 
   }
  makePayment:boolean = false;
- paysuccess:boolean = false;
 
- payment(){
-  this.makePayment = !this.makePayment;
- }
- success(){
-this.paysuccess = !this.paysuccess;
- }
- cancelAction(){
-  this.router.navigate(['/home']);
- }
+//  payment(){
+//   this.makePayment = !this.makePayment;
+//  }
+//  success(){
+// this.paysuccess = !this.paysuccess;
+//  }
+//  cancelAction(){
+//   this.router.navigate(['/home']);
+//  }
 }
