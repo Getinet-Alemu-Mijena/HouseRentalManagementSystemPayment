@@ -13,33 +13,85 @@
     </ul>
   </nav>
 
-  <form *ngIf="!this.success">
-    <div class="form-group">
+  <form *ngIf="!this.success" [formGroup]="registerForm">
+    <!-- <div class="form-group">
       <label for="property">Property</label>
       <select class="form-control" id="property" name="property">
         <option>Property 1</option>
         <option>Property 2</option>
         <option>Property 3</option>
       </select>
-    </div>
-    <div class="form-group">
+    </div> -->
+    <!-- <div class="form-group">
       <label for="month">Month</label>
       <input type="month" class="form-control" id="month" name="month">
+    </div> -->
+    <div class="form-group">
+      <label for="amount">Phone Number</label>
+      <input type="text" class="form-control" id="" formControlName = "phoneNumber" step=".01"placeholder="Enter phone number">
+      <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['required'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *Mobile is Required
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['minlength'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *The Minimum length is 10
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['maxlength'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *The maximum length is 13
+    </div>
+    <div class="form-text text-danger"
+        *ngIf="phoneNumber.errors?.['pattern'] && (phoneNumber.dirty || phoneNumber.touched)">
+        *Invalid Mobile
+    </div>
     </div>
     <div class="form-group">
       <label for="amount">Amount</label>
-      <input type="number" class="form-control" id="amount" name="amount" step=".01">
+      <input type="text" class="form-control" id="amount" formControlName="amount" step=".01"placeholder="Enter amount">
+      <div class="form-text text-danger"
+      *ngIf="amount.errors?.['required'] && (amount.dirty || amount.touched)">
+      *Amount is Required
+  </div>
+  <div class="form-text text-danger"
+      *ngIf="amount.errors?.['minlength'] && (amount.dirty || amount.touched)">
+      *The Minimum length is 4
+  </div>
+  <div class="form-text text-danger"
+      *ngIf="amount.errors?.['maxlength'] && (amount.dirty || amount.touched)">
+      *The maximum length is 13
+  </div>
+  <div class="form-text text-danger"
+      *ngIf="amount.errors?.['pattern'] && (amount.dirty || amount.touched)">
+      *Invalid amount
+  </div>
     </div>
     <div class="form-group">
+      <label for="amount">Payment Code</label>
+      <input type="text" class="form-control" id="amount" formControlName="Paymentcode" step=".01"placeholder="Enter code of length 6">
+      <div class="form-text text-danger"
+      *ngIf="Paymentcode.errors?.['required'] && (Paymentcode.dirty || Paymentcode.touched)">
+      *Payment Code is Required
+  </div>
+  <div class="form-text text-danger"
+      *ngIf="Paymentcode.errors?.['maxlength'] && (Paymentcode.dirty || Paymentcode.touched)">
+      *The maximum length is 6
+  </div>
+  <div class="form-text text-danger"
+      *ngIf="Paymentcode.errors?.['pattern'] && (Paymentcode.dirty || Paymentcode.touched)">
+      *Invalid Payment Code
+  </div>
+    </div>
+    <!-- <div class="form-group">
       <label for="payment-method">Payment Method</label>
       <select class="form-control" id="payment-method" name="payment-method">
         <option>Credit Card</option>
         <option>Debit Card</option>
         <option>PayPal</option>
       </select>
-    </div>
+    </div> -->
     <button type="submit" class="btn btn-primary"(click)="cancelAction()">Cancel</button>
-    <button type="submit" class="btn btn-primary"(click)="successMessage()">Submit</button>
+    <button type="submit" class="btn btn-primary"(click)="updateUserInfo()">Submit</button>
   </form>
 
   <div class="success-message"*ngIf="this.success">

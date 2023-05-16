@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,6 +12,7 @@ export class LoginComponent {
 constructor(private http: HttpClient,
   private fb: FormBuilder,
   private router: Router,
+  private currentUserInfo:AuthenticationService
  ){}
 
 IncorrectUserOrPassword!: string;
@@ -46,11 +48,10 @@ UserRole!:string;
               // this.CheckRole(this.phoneNumber.value);
               // this.router.navigate(['/Tenant']);
             //  alert('User is a valid user ');
+            this.currentUserInfo.login(this.phoneNumber.value,this.password.value);
             this.router.navigate(['/home']);
             } else {
               this.IncorrectUserOrPassword="Incorrect phone number Or Password";
-
-
             }
           },
           (error) => {
