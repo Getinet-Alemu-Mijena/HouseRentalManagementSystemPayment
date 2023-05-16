@@ -23,15 +23,7 @@ export class RegistrationComponent {
       Validators.maxLength(2),
       Validators.pattern('[a-zA-Z].*')
     ]),
-    // username: new FormControl('',[
-    //   Validators.required,
-    //   Validators.maxLength(2),
-    //   Validators.pattern('[a-zA-Z].*')
-    // ]),
-    // email: new FormControl('',[
-    //   Validators.required,
-    //   Validators.email
-    // ])
+   
     phoneNumber: new FormControl('', [
       Validators.required,
       Validators.pattern('[+251]?[0]?[1-9]*'),
@@ -63,12 +55,7 @@ export class RegistrationComponent {
   get lastname(): FormControl {
     return this.registerForm.get('lastname') as FormControl;
   }
-  // get username(): FormControl {
-  //   return this.registerForm.get('username') as FormControl;
-  // }
-  // get email(): FormControl {
-  //   return this.registerForm.get('email') as FormControl;
-  // }
+  
   get phoneNumber(): FormControl {
     return this.registerForm.get('phoneNumber') as FormControl;
   }
@@ -103,7 +90,7 @@ export class RegistrationComponent {
       passw: this.password.value,
       bal_ance:this.balance.value
     };
-    this.http.post('http://localhost:3050/addUser', data).subscribe(
+    this.http.post('http://localhost:3050/addUserToPayment', data).subscribe(
       (response) => {
         if ((response as any).message == 'User added successfully') {
 
@@ -121,7 +108,7 @@ export class RegistrationComponent {
 
   checkUser(){
     this.http
-    .get(`http://localhost:3050/checkUsers/${this.firstname.value}/${this.lastname.value}/${this.phoneNumber.value}`)
+    .get(`http://localhost:3050/checkUsersPayment/${this.firstname.value}/${this.lastname.value}/${this.phoneNumber.value}`)
     .subscribe(
       (response) => {
         if ((response as any).message == 'User already exists') {

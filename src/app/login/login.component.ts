@@ -40,7 +40,7 @@ UserRole!:string;
   LoginSubmitted(){
 
     this.http
-        .get(`http://localhost:3050/loginCheck/${this.phoneNumber.value}/${this.password.value}`)
+        .get(`http://localhost:3050/loginCheckPayment/${this.phoneNumber.value}/${this.password.value}`)
         .subscribe(
           (response) => {
             if ((response as any).message == 'User exists') {
