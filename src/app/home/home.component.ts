@@ -19,6 +19,10 @@ PhoneNumber:any;
 ngOnInit(){
     this.PhoneNumber = this.currentUserInfo.AuthenticatCurrentUser;
 
+    this.balance = this.currentUserInfo.balance;
+
+    this.Get_Balance_ofUser();
+
   }
 
 
