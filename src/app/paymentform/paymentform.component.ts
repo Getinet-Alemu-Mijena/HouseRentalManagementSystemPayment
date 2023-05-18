@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../authentication.service';
 @Component({
   selector: 'app-paymentform',
   templateUrl: './paymentform.component.html',
@@ -9,8 +10,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaymentformComponent {
 
+
+
+
 constructor(private router:Router,
- private http:HttpClient){}
+ private http:HttpClient,
+ private currentUserInfo: AuthenticationService
+ ){}
+
 success:boolean = false;
   cancelAction(){
     this.router.navigate(['/home']);
@@ -50,16 +57,41 @@ success:boolean = false;
   }
 
  
+  payerBalance:any;
+  payerPhoneNumber:any;
+  ngOnInit(){
+      this.payerPhoneNumber = this.currentUserInfo.AuthenticatCurrentUser;
+      this.payerBalance = this.currentUserInfo.balance;
+    }
 
+  updateSenderBalance(){
+      const data = {
+        PhoneNumber: this.payerPhoneNumber,
+        //change to floate and continue the change
+        Amount: this.payerBalance-this.amount.value
+        // paymentCode: this.Paymentcode.value
+      };
+      // this.http.post('http://localhost:3050/
+      this.http.post('http://localhost:3050/api/updateSenderBalance', data).subscribe(
+        (response) => {
+          console.log('Sender info updated successfully');
+          // Handle success if needed
+        },
+        (error) => {
+          console.error('Error updating Sender info:', error);
+          // Handle error if needed
+        }
+      );
+    }
 
-  updateUserInfo() {
+  updateReciverInfo() {
     const data = {
       PhoneNumber: this.phoneNumber.value,
-      Amount: this.amount.value
+      Amount: this.payerBalance+this.amount.value
       // paymentCode: this.Paymentcode.value
     };
-
-    this.http.post('/api/updateUserInfo', data).subscribe(
+    // this.http.post('http://localhost:3050/
+    this.http.post('http://localhost:3050/api/updateUserInfo', data).subscribe(
       (response) => {
         console.log('User info updated successfully');
         // Handle success if needed
@@ -69,6 +101,7 @@ success:boolean = false;
         // Handle error if needed
       }
     );
+  this.updateSenderBalance();
   }
 }
 

@@ -103,7 +103,7 @@ export class RegistrationComponent {
       passw: this.password.value,
       bal_ance:this.balance.value
     };
-    this.http.post('http://localhost:3050/addUser', data).subscribe(
+    this.http.post('http://localhost:3050/addUserToPayment', data).subscribe(
       (response) => {
         if ((response as any).message == 'User added successfully') {
 
@@ -121,7 +121,7 @@ export class RegistrationComponent {
 
   checkUser(){
     this.http
-    .get(`http://localhost:3050/checkUsers/${this.firstname.value}/${this.lastname.value}/${this.phoneNumber.value}`)
+    .get(`http://localhost:3050/checkUsersPayment/${this.firstname.value}/${this.lastname.value}/${this.phoneNumber.value}`)
     .subscribe(
       (response) => {
         if ((response as any).message == 'User already exists') {

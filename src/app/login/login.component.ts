@@ -37,10 +37,42 @@ UserRole!:string;
     return this.loginForm.get('password') as FormControl;
   }
 
+
+  // balance!: any;
+  // ngOnInit() {
+  //   this.http.get('http://localhost:3050/PayerBalance/${this.phoneNumber.value}').subscribe(
+  //     (data: any) => {
+  //       this.balance = data;
+  //       alert(this.balance);
+  //       this.currentUserInfo.userBalance(this.balance);
+  //     },
+  //     (error: any) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+
+  balance!: any;
+
+Balance() {
+  this.http.get(`http://localhost:3050/PayerBalance/${this.phoneNumber.value}`).subscribe(
+    (data: any) => {
+      console.log(data);
+      this.balance = data[0].Balance;
+      // alert(this.balance);
+      this.currentUserInfo.userBalance(this.balance);
+    },
+    (error: any) => {
+      console.log(error);
+    }
+  );
+}
+
+
   LoginSubmitted(){
 
     this.http
-        .get(`http://localhost:3050/loginCheck/${this.phoneNumber.value}/${this.password.value}`)
+        .get(`http://localhost:3050/loginCheckPayment/${this.phoneNumber.value}/${this.password.value}`)
         .subscribe(
           (response) => {
             if ((response as any).message == 'User exists') {
@@ -59,6 +91,7 @@ UserRole!:string;
             console.error('Error: ', error);
           }
         );
+
   }
 
   // CheckRole(userName:string){

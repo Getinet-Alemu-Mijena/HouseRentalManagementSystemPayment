@@ -34,8 +34,11 @@
       <div class="form-text text-danger" *ngIf="password.errors?.['maxlength'] && (password.dirty || password.touched)">
           *The maximum length is 15
       </div>
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" (click)="Balance()">
       </form>
       Creare new account<a [routerLink]="['/registration']"> Registration</a>
     </div>
-
+    <h1 *ngFor="let person of balance">
+       {{person.Balance}}
+    </h1>
+  

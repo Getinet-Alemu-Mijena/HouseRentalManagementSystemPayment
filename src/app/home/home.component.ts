@@ -12,10 +12,11 @@ export class HomeComponent {
     private router: Router,
     private currentUserInfo: AuthenticationService
   ){}
-
+  balance:any;
 PhoneNumber:any;
 ngOnInit(){
     this.PhoneNumber = this.currentUserInfo.AuthenticatCurrentUser;
+    this.balance = this.currentUserInfo.balance;
   }
 
 
