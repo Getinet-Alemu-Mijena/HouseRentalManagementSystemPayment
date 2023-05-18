@@ -23,15 +23,7 @@ export class RegistrationComponent {
       Validators.maxLength(2),
       Validators.pattern('[a-zA-Z].*')
     ]),
-    // username: new FormControl('',[
-    //   Validators.required,
-    //   Validators.maxLength(2),
-    //   Validators.pattern('[a-zA-Z].*')
-    // ]),
-    // email: new FormControl('',[
-    //   Validators.required,
-    //   Validators.email
-    // ])
+   
     phoneNumber: new FormControl('', [
       Validators.required,
       Validators.pattern('[+251]?[0]?[1-9]*'),
@@ -40,10 +32,6 @@ export class RegistrationComponent {
     ]),
     gender: new FormControl('', [
       Validators.required
-    ]),
-    balance: new FormControl('',[
-      Validators.required,
-      Validators.minLength(3),
     ]),
     password: new FormControl('', [
       Validators.required,
@@ -63,12 +51,7 @@ export class RegistrationComponent {
   get lastname(): FormControl {
     return this.registerForm.get('lastname') as FormControl;
   }
-  // get username(): FormControl {
-  //   return this.registerForm.get('username') as FormControl;
-  // }
-  // get email(): FormControl {
-  //   return this.registerForm.get('email') as FormControl;
-  // }
+  
   get phoneNumber(): FormControl {
     return this.registerForm.get('phoneNumber') as FormControl;
   }
@@ -81,9 +64,7 @@ export class RegistrationComponent {
   get ConfirmPassword(): FormControl {
     return this.registerForm.get('ConfirmPassword') as FormControl;
   }
-  get balance(): FormControl {
-    return this.registerForm.get('balance') as FormControl;
-  }
+
 
   passWordValidators(): boolean {
     if (this.password.value === this.ConfirmPassword.value) {
@@ -101,7 +82,7 @@ export class RegistrationComponent {
       phoneN: this.phoneNumber.value,
       Gender: this.gender.value,
       passw: this.password.value,
-      bal_ance:this.balance.value
+      bal_ance:"20000"
     };
     this.http.post('http://localhost:3050/addUserToPayment', data).subscribe(
       (response) => {

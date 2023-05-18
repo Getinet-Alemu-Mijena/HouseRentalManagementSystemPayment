@@ -12,7 +12,9 @@
         <li><a href="#">Contact</a></li> -->
   </ul>
 </nav>
+<h1 style="margin-left: 30%;">Balance :{{Balance_Info[0].Balance}}</h1>
 <div class="container">
+  
   <div class="payment" *ngIf="!this.makePayment">
     <a [routerLink]="['/payment']">Make Payment</a>
     <img src="assets/Image/payment.png" alt="">
@@ -32,5 +34,4 @@
   </div>  
 </div>
 
-<h1>{{PhoneNumber}}</h1>
-<h1>{{balance}}</h1>
+
