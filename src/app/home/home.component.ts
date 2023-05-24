@@ -19,7 +19,7 @@ PhoneNumber:any;
 ngOnInit(){
     this.PhoneNumber = this.currentUserInfo.AuthenticatCurrentUser;
 
-    this.balance = this.currentUserInfo.balance;
+    //this.balance = this.currentUserInfo.balance;
 
     this.Get_Balance_ofUser();
 
@@ -43,6 +43,7 @@ Get_Balance_ofUser(){
   this.http.get(`http://localhost:3050/GetAccountInfo/${this.PhoneNumber}`).subscribe(
     (data: any) => {
       this.Balance_Info = data;
+      this.currentUserInfo.userBalance(this.Balance_Info[0].Balance);
       //console.log(this.users);erere
     },
     (error: any) => {

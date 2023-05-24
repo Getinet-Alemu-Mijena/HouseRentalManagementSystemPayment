@@ -28,7 +28,7 @@
     </div> -->
     <div class="form-group">
       <label for="amount">Phone Number</label>
-      <input type="text" class="form-control" id="" formControlName = "phoneNumber" step=".01"placeholder="Enter phone number">
+      <input type="number" class="form-control"  formControlName = "phoneNumber" placeholder="Enter phone number">
       <div class="form-text text-danger"
         *ngIf="phoneNumber.errors?.['required'] && (phoneNumber.dirty || phoneNumber.touched)">
         *Mobile is Required
@@ -39,32 +39,22 @@
     </div>
     <div class="form-text text-danger"
         *ngIf="phoneNumber.errors?.['maxlength'] && (phoneNumber.dirty || phoneNumber.touched)">
-        *The maximum length is 13
-    </div>
-    <div class="form-text text-danger"
-        *ngIf="phoneNumber.errors?.['pattern'] && (phoneNumber.dirty || phoneNumber.touched)">
-        *Invalid Mobile
+        *The maximum length is 10
     </div>
     </div>
     <div class="form-group">
       <label for="amount">Amount</label>
-      <input type="text" class="form-control" id="amount" formControlName="amount" step=".01"placeholder="Enter amount">
+      <input type="number" class="form-control" id="amount" formControlName="amount" step=".01"placeholder="Enter amount">
       <div class="form-text text-danger"
       *ngIf="amount.errors?.['required'] && (amount.dirty || amount.touched)">
       *Amount is Required
   </div>
-  <div class="form-text text-danger"
-      *ngIf="amount.errors?.['minlength'] && (amount.dirty || amount.touched)">
-      *The Minimum length is 4
-  </div>
+  
   <div class="form-text text-danger"
       *ngIf="amount.errors?.['maxlength'] && (amount.dirty || amount.touched)">
       *The maximum length is 13
   </div>
-  <div class="form-text text-danger"
-      *ngIf="amount.errors?.['pattern'] && (amount.dirty || amount.touched)">
-      *Invalid amount
-  </div>
+  
     </div>
     <div class="form-group">
       <label for="amount">Payment Code</label>
@@ -75,12 +65,13 @@
   </div>
   <div class="form-text text-danger"
       *ngIf="Paymentcode.errors?.['maxlength'] && (Paymentcode.dirty || Paymentcode.touched)">
-      *The maximum length is 6
+      *The maximum length is 10
   </div>
   <div class="form-text text-danger"
-      *ngIf="Paymentcode.errors?.['pattern'] && (Paymentcode.dirty || Paymentcode.touched)">
-      *Invalid Payment Code
+      *ngIf="Paymentcode.errors?.['minlength'] && (Paymentcode.dirty || Paymentcode.touched)">
+      *The minimum length is 10
   </div>
+  
     </div>
     <!-- <div class="form-group">
       <label for="payment-method">Payment Method</label>
@@ -91,7 +82,7 @@
       </select>
     </div> -->
     <button type="submit" class="btn btn-primary"(click)="cancelAction()">Cancel</button>
-    <button type="submit" class="btn btn-primary"(click)="updateReciverInfo()">Submit</button>
+    <button type="submit" class="btn btn-primary"(click)="updateReciverInfo()">Pay</button>
   </form>
 
   <div class="success-message"*ngIf="this.success">
