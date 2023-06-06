@@ -78,4 +78,16 @@
       font-size: 14px;
     }
   }
+
+  header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo img {
+    display: inline-block;
+    max-width: 150px; /* Adjust the width as needed */
+  }
+  
   

@@ -102,7 +102,7 @@ export class RegistrationComponent {
 
   checkUser(){
     this.http
-    .get(`http://localhost:3050/checkUsersPayment/${this.firstname.value}/${this.lastname.value}/${this.phoneNumber.value}`)
+    .get(`http://localhost:3050/checkUsersPayment/${this.phoneNumber.value}`)
     .subscribe(
       (response) => {
         if ((response as any).message == 'User already exists') {
